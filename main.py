@@ -8,11 +8,15 @@ cwd = os.getcwd()
 
 # for USE command: selects the Database to be used implemented by changing directories
 def useDB(db):
+    clear = True
     path = os.path.join(cwd, db)
     try:
         os.chdir(path)
     except OSError as error:
         print("!Failed to use", db, "because it does not exist.")
+        clear = False
+    if clear:
+        print("Using database", db)
 
 #used for DROP command: removes a Database and is implemented by deleting a directory using OS
 def dropDB(db):
@@ -66,6 +70,7 @@ def createTBL(tbl, args):
             fin.write(vars + " ")
         fin.write("\n")
         fin.close()
+        print("Table", tbl, "created.")
 
 #this function is not on the example output but is called whenever there are mistakes in the command
 def errFormat():
@@ -108,6 +113,7 @@ def alterTBL(tbl, tname, vartype):
         f = open(tbl, 'w')
         f.write(new + "\n")
         f.close()
+        print("Table" , tbl, "modified.")
 
 #this is the main loop that prompts the user and parses the input/calls approiate functions
 while True:
