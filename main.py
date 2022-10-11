@@ -119,6 +119,8 @@ def alterTBL(tbl, tname, vartype):
 while True:
     #input takes the whole line from the user including endline
     userInput = input()
+    if userInput.upper() == ".EXIT":
+        break
     if userInput[-1] != ";":
         errFormat()
         continue
